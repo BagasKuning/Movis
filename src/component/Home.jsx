@@ -43,7 +43,7 @@ export default function Home() {
       navigation={true}
       modules={[Navigation, Autoplay]}
     >
-      <div style={{ height: homeSize }} className='opacity-20 bg-black' ></div>
+      <div style={{ height: homeSize }} className='opacity-20 bg-black'></div>
       {movieData && movieData.map((items, index) => (
         <SwiperSlide
           key={index}
@@ -51,7 +51,6 @@ export default function Home() {
           style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${items.backdrop_path})`,
             display: 'flex',
-            backgroundAttachment: 'fixed', // Add this line
           }}
         >
           <div
