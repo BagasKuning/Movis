@@ -1,0 +1,20 @@
+import Home from "./Home.jsx";
+import Movies from "./Movies.jsx";
+
+export default function Main() {
+  return (
+    <div>
+        <Home/>
+        <Movies 
+            title={"TOP 20 MOVIES"} 
+            url={"https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=cf1ac44e572326948fd75eef18f2e59e"} 
+        />
+        <Movies 
+            title={"TRENDING TV"} 
+            url={"https://api.themoviedb.org/3/trending/tv/day?language=en-US&api_key=cf1ac44e572326948fd75eef18f2e59e"} 
+        />
+
+        <div style={{height: "1000px"}}/>
+    </div>
+  )
+}

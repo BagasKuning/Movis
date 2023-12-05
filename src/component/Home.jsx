@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
 
@@ -33,7 +34,7 @@ export default function Home() {
 
     return (
       <Swiper 
-      className='mySwiper flex' 
+      className='mySwiper flex relative' 
       style={{ height: homeSize }}
       rewind={true}
       autoplay={{
@@ -43,7 +44,7 @@ export default function Home() {
       navigation={true}
       modules={[Navigation, Autoplay]}
     >
-      <div style={{ height: homeSize }} className='opacity-20 bg-black'></div>
+      {/* <div style={{ height: homeSize }} className='opacity-20 bg-black'></div> */}
       {movieData && movieData.map((items, index) => (
         <SwiperSlide
           key={index}
@@ -53,13 +54,14 @@ export default function Home() {
             display: 'flex',
           }}
         >
-          <div
+          <Link
+            to={`detail/${items.id}?query=${items.title ? items.title : items.name}&type=${items.media_type ? items.media_type : "movie"}&first_air_date_year=${items.release_date ? items.release_date : items.first_air_date}&year=${items.release_date ? new Date(items.release_date).getUTCFullYear() : new Date(items.first_air_date).getUTCFullYear()}&adult=${items.adult}&language=${items.original_language}`}
             className='h-full w-full absolute '
             style={{
               height: homeSize,
               backgroundImage: `linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0) 30%)`
             }}
-          ></div>
+          />
           <h2 className='font-medium text-white px-14 pb-8 z-50' style={{ fontSize: "2rem" }}>
             {items.original_title}
           </h2>

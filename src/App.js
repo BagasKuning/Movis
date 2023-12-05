@@ -1,16 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./component/Navbar.jsx";
-import Home from "./component/Home.jsx";
-import Movies from "./component/Movies.jsx";
+import Main from "./component/Main";
+import MovieDesc from "./component/MovieDesc.jsx";
 
 function App() {
   return (
     <div className="App" style={{background: "rgb(2, 2, 2)"}}>
-        <Navbar/>
-        <Home/>
-        <Movies/>
-        <div style={{height: "1000px"}}>
-
-        </div>
+      <BrowserRouter>
+      <Navbar/>
+        <Routes>
+          <Route path="/" element={<Main/>}></Route>
+          <Route path="/detail/:id" element={<MovieDesc/>}></Route>
+        </Routes>    
+      </BrowserRouter>
     </div>
   );
 }
