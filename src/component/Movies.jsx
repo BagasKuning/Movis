@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-export default function Movies({title, url}) {
+export default function Movies({title, url, id}) {
     const [movieTop, setMovieTop] = useState([])
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
@@ -30,10 +30,9 @@ export default function Movies({title, url}) {
     window.addEventListener("resize", () => {
         setWindowWidth(window.innerWidth)
     })
-    console.log(movieTop)
 
     return (
-        <div className='container mx-auto my-20'>
+        <div className='container mx-auto my-20' id={id}>
             <div className='mx-8'>
                 <div className="text-2xl mb-6 relative mb-6">
                     <h1 className='relative z-10'>{title}</h1>
@@ -100,8 +99,3 @@ export default function Movies({title, url}) {
         </div>
     )
 }
-
-                            {/* <img src={`https://image.tmdb.org/t/p/original${items.poster_path}`} alt=""
-                            className="card w-full border-y relative"
-                            style={{borderColor: "rgba(255, 255, 255, 0.1)"}}
-                            /> */}

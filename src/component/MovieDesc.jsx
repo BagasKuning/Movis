@@ -3,7 +3,6 @@ import axios from 'axios';
 
 function MovieDesc(props) {
   const searchParams = new URLSearchParams(window.location.search);
-    const id = window.location.pathname.split("/").pop();
     const query = searchParams.get('query');
     const date = searchParams.get('first_air_date_year');
     const year = searchParams.get('year');
@@ -58,12 +57,12 @@ function MovieDesc(props) {
           <img 
             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
             alt={`Poster ${movie.name}`}
-            className='md:translate-x-[70px] w-full md:w-6/12 h-60 md:h-auto sm:h-60'
+            className='md:translate-x-[70px] w-full md:w-6/12 h-60 md:h-auto sm:h-60 rounded-md'
           />
         </div>
         <div  className='flex-1'>
           <div className='mb-2'>
-            <h1 className='text-4xl xl:text-6xl mb-1 font-bold'>{movie.name ? movie.name : movie.original_title}</h1>
+            <h1 className='text-3xl lg:text-4xl xl:text-5xl mb-1 font-bold'>{movie.name ? movie.name : movie.title}</h1>
             <div>
               {movie.genre_ids && movie.genre_ids.map((items, index) => {
                 return(
