@@ -7,13 +7,28 @@ const Navbar = () => {
     const [navbarHeight, setNavbarHeight] = useState("")
     const [scrollY, setScrollY] = useState(window.scrollY)
     const [bgNavbar, setBgNavbar] = useState(false)
+    const [query, setQuery] = useState("")
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          // Mengirimkan query ke fungsi pengelolaan pencarian
+          handleSearch(query);
+        }
+      };
+    
+      const handleSearch = (searchQuery) => {
+        // Tempatkan logika pencarian atau kirimkan ke server di sini
+        window.location.href = `search/${query}`
+        console.log('Search query:', searchQuery);
+        // Reset nilai input setelah pencarian
+        setQuery('');
+      };
 
     useEffect(() => {
         setNavbarHeight(document.getElementById("navbar").clientHeight)
         const handleScroll = () => {
           setScrollY(window.scrollY);
         };
-    
         window.addEventListener('scroll', handleScroll);
     
         // Membersihkan event listener setelah komponen di-unmount
@@ -29,6 +44,8 @@ const Navbar = () => {
             setBgNavbar(false)
         }
       }, [scrollY]);
+
+    // console.log(bgNavbar)
 
     return (
         <div
@@ -49,6 +66,10 @@ const Navbar = () => {
                     </div>
                     <input
                         type="text"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        onKeyDown={handleKeyPress}
+                        placeholder="Search"
                         className="ml-3 px-3 py-[3px] rounded-2xl w-36 sm:mr-0 mr-4 text-black relative z-10"
                     />
                     <img

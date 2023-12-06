@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main/>}></Route>
           <Route path="/detail/:id" element={<MovieDesc/>}></Route>
-          <Route path="/search" element={<Search/>}></Route>
+          <Route path="/search/:query" element={<Search/>}></Route>
         </Routes>    
       </BrowserRouter>
     </div>

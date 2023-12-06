@@ -14,15 +14,17 @@ function MovieDesc(props) {
     const [movie, setMovie] = useState({})
     const [genre, setGenre] = useState([])
 
-    useEffect(() => {
-      if(type == "tv") setUrl(`https://api.themoviedb.org/3/search/tv?query=${query}&first_air_date_year=${date}&page=1&year=${year}&include_adult=${adult}`)
-      const options = {
+    const options = {
       method: 'GET',
       headers: {
           accept: 'application/json',
           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjFhYzQ0ZTU3MjMyNjk0OGZkNzVlZWYxOGYyZTU5ZSIsInN1YiI6IjY1NWVlZDRmMmIxMTNkMDE0ZWFkMzJiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3t11kV5FJeA8AkviCTAb9XfT_GijZq_RlJQYtixAUa0'
       }
       };
+
+    useEffect(() => {
+      if(type === "tv") setUrl(`https://api.themoviedb.org/3/search/tv?query=${query}&first_air_date_year=${date}&page=1&year=${year}&include_adult=${adult}`)
+
       axios(url,options)
       .then(res => {
           setMovie(res.data.results[0])
