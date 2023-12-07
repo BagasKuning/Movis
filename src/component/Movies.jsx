@@ -20,7 +20,7 @@ export default function Movies({title, url, id}) {
     useEffect(() => {
         axios(url,options)
         .then(res => {
-            setMovieTop(res.data.results)
+            setMovieTop(res.data.results.splice(0, 10))
         })
         .catch(error => {
             console.error('Error:', error);

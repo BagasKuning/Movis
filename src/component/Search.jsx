@@ -2,9 +2,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import loading from "./../images/loading.png"
 
 export default function Search() {
     const [data, setData] = useState([])
+    const [message, setMessage] = useState(false)
     const query = window.location.pathname.split("/")[2]
     const url = `https://api.themoviedb.org/3/search/multi?query=${query}&language=en-US&page=1&adult=true`
     const options = {
@@ -23,19 +25,37 @@ export default function Search() {
         .catch(error => {
             console.error('Error:', error);
         });
+
+        const timeoutId = setTimeout(() => {
+            setMessage(true);
+          }, 3000);
+      
+          // Membersihkan timer saat komponen unmount atau kondisi berubah
+          return () => clearTimeout(timeoutId);
     }, [])
     console.log(data)
 
     if(data.length === 0){
         return (
-            <div className='min-h-screen text-2xl italic font-semibold flex justify-center items-center' style={{color: '#ffffffd8'}}>
-                DATA NOT FOUND
+            <div className='min-h-screen flex justify-center items-center text-center' style={{ color: '#ffffffd8' }}>
+              {
+                message ? 
+                <div>
+                    <p className='text-3xl italic font-semibold'>DATA NOT FOUND</p>
+                    <p className='text-sm'>( Or Check Your Connection )</p>
+                </div> : 
+                <img 
+                    src={loading} 
+                    alt="loading..." 
+                    className='w-20 animate-spin'
+                />
+              }
             </div>
-        )
+          );
     } else {
         return (
-          <div className='min-h-screen text-white'>
-              <div className='relative pt-16 pb-6 text-center w-screen flex justify-center'>
+          <div className='min-h-screen text-white flex flex-col items-center justify-center'>
+              <div className='relative pt-12 pb-6 text-center w-full flex justify-center'>
                   <h1 className='font-semibold italic capitalize w-max text-4xl z-10'>
                       {query && query.replace(/%20/g, ' ')}
                       <div 
@@ -44,8 +64,16 @@ export default function Search() {
                       />
                   </h1>
               </div>
-              <div className='container mx-auto flex flex-wrap justify-center gap-4'>
-                  {data && data.map((items, index) => (
+              <div className='container px-3 flex flex-wrap justify-center gap-4'>
+                  {data && data.map((items, index) => {
+                    if(!items.poster_path){
+                        return(
+                            <div key={index} className='hidden'>
+                            </div>
+                        )
+                    }
+
+                    return(
                       <Link 
                           key={index} 
                           className='w-40' 
@@ -59,7 +87,10 @@ export default function Search() {
                           />
                           <h2>{items.name ? items.name : items.title}</h2>
                       </Link>
-                  ))}
+                    )
+                    }
+                )
+            }
               </div>
           </div>
         )

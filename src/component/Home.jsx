@@ -25,7 +25,7 @@ export default function Home() {
         };
         axios(url, options)
           .then(response => {
-            setMovieData(response.data.results)
+            setMovieData(response.data.results.splice(0, 10))
           })
           .catch(error => {
             console.error('Error:', error);
