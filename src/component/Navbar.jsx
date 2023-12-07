@@ -18,7 +18,7 @@ const Navbar = () => {
     
       const handleSearch = (searchQuery) => {
         // Tempatkan logika pencarian atau kirimkan ke server di sini
-        window.location.href = `search/${query}`
+        window.location.href = `/search/${query}`
         console.log('Search query:', searchQuery);
         // Reset nilai input setelah pencarian
         setQuery('');
@@ -38,7 +38,7 @@ const Navbar = () => {
       }, []); // Dependensi kosong agar efek hanya dijalankan sekali saat komponen dimount
     
       useEffect(() => {
-        if (scrollY > 475) {
+        if (scrollY > 0) {
           setBgNavbar(true)
         } else {
             setBgNavbar(false)
@@ -49,7 +49,7 @@ const Navbar = () => {
 
     return (
         <div
-        className="flex justify-center w-screen fixed z-50 transition duration-300"
+        className="flex justify-center w-screen fixed z-50 transition duration-500"
         style={{
             height: navbarHeight,
             background: `${bgNavbar ? "#061720" : "linear-gradient(to bottom, rgb(9, 38, 53), rgba(0, 0, 0, 0) 100%)"}`,
@@ -61,8 +61,8 @@ const Navbar = () => {
                 </Link>
                 <div className="flex items-center relative">
                     <div className="hidden sm:flex gap-3">
-                        <a href="#movie">MOVIES</a>
-                        <a href="#tv">TV</a>
+                        <a href="/#movie">MOVIES</a>
+                        <a href="/#tv">TV</a>
                     </div>
                     <input
                         type="text"

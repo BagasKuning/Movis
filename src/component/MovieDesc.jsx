@@ -14,17 +14,17 @@ function MovieDesc(props) {
     const [movie, setMovie] = useState({})
     const [genre, setGenre] = useState([])
 
-    const options = {
-      method: 'GET',
-      headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjFhYzQ0ZTU3MjMyNjk0OGZkNzVlZWYxOGYyZTU5ZSIsInN1YiI6IjY1NWVlZDRmMmIxMTNkMDE0ZWFkMzJiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3t11kV5FJeA8AkviCTAb9XfT_GijZq_RlJQYtixAUa0'
-      }
-      };
-
     useEffect(() => {
       if(type === "tv") setUrl(`https://api.themoviedb.org/3/search/tv?query=${query}&first_air_date_year=${date}&page=1&year=${year}&include_adult=${adult}`)
 
+      const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjFhYzQ0ZTU3MjMyNjk0OGZkNzVlZWYxOGYyZTU5ZSIsInN1YiI6IjY1NWVlZDRmMmIxMTNkMDE0ZWFkMzJiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3t11kV5FJeA8AkviCTAb9XfT_GijZq_RlJQYtixAUa0'
+        }
+      };
+      
       axios(url,options)
       .then(res => {
           setMovie(res.data.results[0])
@@ -49,7 +49,7 @@ function MovieDesc(props) {
       <div 
       className='w-screen h-screen absolute bg-cover bg-center blur-sm'
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`
+        backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path ? movie.backdrop_path : "1E5baAaEse26fej7uHcjOgEE2t2.jpg"})`
       }}
       />
       <div className='opacity-50 bg-black h-full w-full absolute z-0'></div>
@@ -57,7 +57,7 @@ function MovieDesc(props) {
       <div className='container md:translate-x-[-70px] h-screen mx-auto px-4 md:px-14 flex flex-col md:flex-row text-center md:text-left items-center justify-center z-10 gap-2'>
         <div className='flex justify-center items-end w-auto md:w-[600px] flex-1'>
           <img 
-            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
+            src={`https://image.tmdb.org/t/p/original${movie.poster_path ? movie.poster_path : "/1E5baAaEse26fej7uHcjOgEE2t2.jpg"}`} 
             alt={`Poster ${movie.name}`}
             className='md:translate-x-[70px] w-full md:w-6/12 h-60 md:h-auto sm:h-60 rounded-md'
           />
