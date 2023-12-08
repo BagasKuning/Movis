@@ -1,7 +1,16 @@
+import { useEffect } from "react";
 import Home from "./Home.jsx";
 import Movies from "./Movies.jsx";
 
 export default function Main() {
+  
+  useEffect(() => {
+    if(window.location.hash === "#movie"){
+      // window.scrollY = document.getElementById("movie")
+    }
+  }, [])
+  console.log(window.location.hash )
+
   return (
     <div>
         <Home/>

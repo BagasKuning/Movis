@@ -41,7 +41,9 @@ export default function Search() {
               {
                 message ? 
                 <div>
-                    <p className='text-3xl italic font-semibold'>DATA NOT FOUND</p>
+                    <p className='text-3xl font-semibold'>
+                        Didn't find data from <span className='italic underline'>{query && query.replace(/%20/g, ' ')}</span>
+                    </p>
                     <p className='text-sm'>( Or Check Your Connection )</p>
                 </div> : 
                 <img 

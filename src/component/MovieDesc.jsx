@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
-function MovieDesc(props) {
+function MovieDesc() {
   const searchParams = new URLSearchParams(window.location.search);
     const query = searchParams.get('query');
     const date = searchParams.get('first_air_date_year');
@@ -41,7 +41,8 @@ function MovieDesc(props) {
           console.error('Error:', error);
       });
   }, [url])
-  console.log(movie)
+  console.clear()
+
     
   return (
     <div 
@@ -71,7 +72,7 @@ function MovieDesc(props) {
                   genre.map((element, index) => {
                     if(element.id === items){
                       return (
-                        <span key={index} className='py-1 px-2 mr-1 bg-gray-900 rounded text-sm xl:text-lg'>
+                        <span key={index} className='font-sans font-medium py-1 px-2 mr-1 bg-gray-900 rounded text-sm xl:text-lg'>
                           {element.name}
                         </span>
                       )
@@ -81,7 +82,7 @@ function MovieDesc(props) {
               })}
             </div>
           </div>
-          <p className='text-xs md:text-sm lg:text-base xl:text-xl sm:px-10 md:px-0'>{movie.overview}</p>
+          <p className='font-sans text-xs md:text-sm lg:text-base xl:text-xl sm:px-10 md:px-0'>{movie.overview}</p>
         </div>
       </div>
     </div>

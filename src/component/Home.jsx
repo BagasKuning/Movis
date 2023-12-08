@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 export default function Home() {
 
     const [movieData, setMovieData] = useState([]);
-    const homeSize = "550px";
 
     useEffect(() => {
         const url = 'https://api.themoviedb.org/3/trending/movie/day?api_key=cf1ac44e572326948fd75eef18f2e59e';
@@ -34,8 +33,7 @@ export default function Home() {
 
     return (
       <Swiper 
-      className='mySwiper flex relative' 
-      style={{ height: homeSize }}
+      className='mySwiper flex relative rounded-xl h-[280px] xl:rounded-3xl md:h-[500px] 2xl:h-[680px] min-[2000px]:h-[780px]' 
       rewind={true}
       autoplay={{
         delay: 2500,
@@ -44,7 +42,6 @@ export default function Home() {
       navigation={true}
       modules={[Navigation, Autoplay]}
     >
-      {/* <div style={{ height: homeSize }} className='opacity-20 bg-black'></div> */}
       {movieData && movieData.map((items, index) => (
         <SwiperSlide
           key={index}
@@ -56,13 +53,12 @@ export default function Home() {
         >
           <Link
             to={`detail/${items.id}?query=${items.title ? items.title : items.name}&type=${items.media_type ? items.media_type : "movie"}&first_air_date_year=${items.release_date ? items.release_date : items.first_air_date}&year=${items.release_date ? new Date(items.release_date).getUTCFullYear() : new Date(items.first_air_date).getUTCFullYear()}&adult=${items.adult}&language=${items.original_language}`}
-            className='h-full w-full absolute '
+            className='h-full w-full absolute h-[280px] md:h-[500px] 2xl:h-[680px] min-[2000px]:h-[780px]'
             style={{
-              height: homeSize,
-              backgroundImage: `linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0) 30%)`
+              backgroundImage: `linear-gradient(to top, rgb(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 30%)`
             }}
           />
-          <h2 className='font-medium text-white px-14 pb-8 z-50' style={{ fontSize: "2rem" }}>
+          <h2 className='font-medium text-white md:px-10 px-3 pb-4 z-50 md:text-3xl sm:text-2xl text-lg'>
             {items.original_title}
           </h2>
         </SwiperSlide>

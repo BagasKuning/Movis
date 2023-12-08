@@ -51,8 +51,11 @@ const Navbar = () => {
         }}
         >
             <div id="navbar" className="container h-12 flex w-screen items-center justify-between fixed text-white z-50 ">
-                <Link to={window.location.origin} className="font-medium mx-7 text-2xl mb-1 z-50">
-                    MoviS
+                <Link 
+                  to={window.location.origin} 
+                  className="font-semibold tracking-[1px] rounded-[7px] mx-7 px-2 sm:px-[10px] text:lg sm:text-xl z-50 text-[white] bg-[#1d678f]"
+                >
+                    MOVIs
                 </Link>
                 <div className="flex items-center relative">
                     <div className="hidden sm:flex gap-3 pr-3">
@@ -66,15 +69,13 @@ const Navbar = () => {
                         onChange={(e) => setQuery(e.target.value)}
                         onKeyDown={handleKeyPress}
                         placeholder="Search"
-                        className=" px-3 py-[3px] rounded-2xl w-36 sm:mr-0 mr-4 text-black relative z-10"
+                        className=" rounded-2xl sm:text-base text-xs px-3 py-[3px] mr-7 sm:mr-0 text-black relative z-10 h-5 sm:h-7 w-28 sm:w-36"
                     />
                     <img
                         src={search}
                         alt="search"
                         onClick={handleSearch}
-                        width={20}
-                        height={20}
-                        className="z-10 mr-4 sm:mr-0 absolute right-3 top-50% transform cursor-pointer bg-white"
+                        className="w-3 h-3 sm:w-5 sm:h-5 z-10 mr-7 sm:mr-0 absolute right-3 top-50% transform cursor-pointer bg-white"
                     />
                 </div>
             </div>

@@ -39,7 +39,7 @@ export default function Movies({title, url, id}) {
                     <div className='h-3 translate-x-[-6px] w-16 absolute bottom-0 z-0' 
                     style={{backgroundImage: "linear-gradient(to right, rgb(148 163 184), rgba(0, 0, 0, 0) 100%)"}}></div>
                 </div>
-                 <div className='px-4 border-y-[6.5px]' style={{borderColor: "#3b3b3b5f"}}>
+                 <div className='px-4 border-y-[6.5px]' style={{borderColor: "#3e4c579e"}}>
                     <Swiper className='container justify-between'
                         // slidesPerView={1}
                         spaceBetween={0}
