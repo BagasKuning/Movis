@@ -38,7 +38,7 @@ export default function Home() {
       className="mySwiper flex relative rounded-xl h-[280px] xl:rounded-3xl md:h-[500px] xl:h-[525px] 2xl:h-[680px] min-[2000px]:h-[780px]"
       rewind={true}
       autoplay={{
-        delay: 2500,
+        delay: 2000,
         disableOnInteraction: false,
       }}
       navigation={true}

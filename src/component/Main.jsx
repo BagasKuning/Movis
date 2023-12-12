@@ -19,8 +19,6 @@ export default function Main() {
           "https://api.themoviedb.org/3/trending/tv/day?language=en-US&api_key=cf1ac44e572326948fd75eef18f2e59e"
         }
       />
-
-      <div style={{ height: "70px" }} />
     </div>
   );
 }
