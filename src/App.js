@@ -6,7 +6,7 @@ import Search from "./component/Search.jsx";
 
 function App() {
   return (
-    <div className="App" style={{background: "rgb(2, 2, 2)"}}>
+    <div className="App" style={{background: "rgb(8, 8, 8)"}}>
       <BrowserRouter>
       <Navbar/>
         <Routes>
