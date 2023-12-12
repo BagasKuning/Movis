@@ -35,7 +35,6 @@ export default function Search() {
     // Membersihkan timer saat komponen unmount atau kondisi berubah
     return () => clearTimeout(timeoutId);
   }, [query]);
-  console.log(data);
 
   if (data.length === 0) {
     return (
