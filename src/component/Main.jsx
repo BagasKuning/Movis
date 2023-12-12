@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Home from "./Home.jsx";
 import Movies from "./Movies.jsx";
 

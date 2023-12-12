@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -91,6 +92,7 @@ function MovieDesc() {
               <div>
                 {movie.genre_ids &&
                   movie.genre_ids.map((items, index) => {
+                    // eslint-disable-next-line array-callback-return
                     return genre.map((element, index) => {
                       if (element.id === items) {
                         return (

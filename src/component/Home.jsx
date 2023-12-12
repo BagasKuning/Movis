@@ -66,7 +66,7 @@ export default function Home() {
                   ? new Date(items.release_date).getUTCFullYear()
                   : new Date(items.first_air_date).getUTCFullYear()
               }&adult=${items.adult}&language=${items.original_language}`}
-              className="h-full w-full absolute h-[280px] md:h-[500px] 2xl:h-[680px] min-[2000px]:h-[780px]"
+              className="w-full absolute h-[280px] md:h-[500px] 2xl:h-[680px] min-[2000px]:h-[780px]"
               style={{
                 backgroundImage: `linear-gradient(to top, rgb(0, 0, 0, 0.68), rgba(0, 0, 0, 0) 30%)`,
               }}
