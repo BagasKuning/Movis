@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import getData from "../fn/getData.js";
 import { Link } from "react-router-dom";
 
 // Import Swiper styles
@@ -8,25 +8,12 @@ import "swiper/css";
 
 export default function Movies({ title, url, id }) {
   const [movieTop, setMovieTop] = useState([]);
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjFhYzQ0ZTU3MjMyNjk0OGZkNzVlZWYxOGYyZTU5ZSIsInN1YiI6IjY1NWVlZDRmMmIxMTNkMDE0ZWFkMzJiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3t11kV5FJeA8AkviCTAb9XfT_GijZq_RlJQYtixAUa0",
-    },
-  };
 
   useEffect(() => {
-    axios(url, options)
-      .then((res) => {
-        setMovieTop(res.data.results.splice(0, 10));
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    getData(url).then(res => setMovieTop(res.results.splice(0, 10)))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(movieTop)
 
   return (
     <div className="container mx-auto my-20" id={id}>

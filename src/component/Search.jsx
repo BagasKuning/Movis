@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import axios from "axios";
+import getData from "../fn/getData.js";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import loading from "./../images/loading.png";
@@ -9,24 +9,10 @@ export default function Search() {
   const [message, setMessage] = useState(false);
   const query = window.location.pathname.split("/")[2];
 
-  useEffect(() => {
-    const url = `https://api.themoviedb.org/3/search/multi?query=${query}&language=en-US&page=1&adult=true`;
-    const options = {
-        method: "GET",
-        headers: {
-        accept: "application/json",
-        Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjFhYzQ0ZTU3MjMyNjk0OGZkNzVlZWYxOGYyZTU5ZSIsInN1YiI6IjY1NWVlZDRmMmIxMTNkMDE0ZWFkMzJiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3t11kV5FJeA8AkviCTAb9XfT_GijZq_RlJQYtixAUa0",
-        },
-    };
+  const url = `https://api.themoviedb.org/3/search/multi?query=${query}&language=en-US&page=1&adult=true`;
 
-    axios(url, options)
-      .then((res) => {
-        setData(res.data.results);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+  useEffect(() => {
+    getData(url).then(res => setData(res.results))
 
     const timeoutId = setTimeout(() => {
       setMessage(true);
@@ -34,7 +20,7 @@ export default function Search() {
 
     // Membersihkan timer saat komponen unmount atau kondisi berubah
     return () => clearTimeout(timeoutId);
-  }, [query]);
+  }, [url]);
 
   if (data.length === 0) {
     return (

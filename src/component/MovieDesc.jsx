@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import getData from "../fn/getData.js";
 
 function MovieDesc() {
   const searchParams = new URLSearchParams(window.location.search);
@@ -17,68 +16,46 @@ function MovieDesc() {
   const [movie, setMovie] = useState();
   const [render, setRender] = useState(false);
   const [genre, setGenre] = useState([]);
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjFhYzQ0ZTU3MjMyNjk0OGZkNzVlZWYxOGYyZTU5ZSIsInN1YiI6IjY1NWVlZDRmMmIxMTNkMDE0ZWFkMzJiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3t11kV5FJeA8AkviCTAb9XfT_GijZq_RlJQYtixAUa0",
-    },
-  };
 
   useEffect(() => {
-    if (type === "tv")
+    if (type === "tv") {
       setUrl(
         `https://api.themoviedb.org/3/search/tv?query=${query}&first_air_date_year=${date}&page=1&year=${year}&include_adult=${adult}`
       );
-
-    axios(url, options)
-      .then((res) => {
-        setMovie(res.data.results[0]);
-      })
-      .catch((error) => {
-        // console.error("Error:", error);
-      });
+    }
+    getData(url).then((res) => setMovie(res.results[0]));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [render]);
 
   useEffect(() => {
-    axios(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=cf1ac44e572326948fd75eef18f2e59e&language=en-US",
-      options
-    )
-      .then((res) => {
-        setGenre(res.data.genres);
-      })
-      .catch((error) => {
-        // console.error("Error:", error);
-      });
+    const url =
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=cf1ac44e572326948fd75eef18f2e59e&language=en-US";
+    getData(url).then((res) => setGenre(res.genres));
   }, []);
-  // console.clear()
 
   if (!movie) {
-    setMovie({})
+    setMovie({});
     setRender((a) => !a);
   } else {
     return (
       <div className="flex w-screen h-screen">
         <div
-          className="w-screen h-screen absolute bg-cover bg-center blur-sm"
+          className="w-screen h-screen absolute bg-cover bg-center blur-sm brightness-50"
           style={
             movie.backdrop_path
               ? {
-                  backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+                  backgroundImage: `url(https://image.tmdb.org/t/p/original${movie?.backdrop_path})`,
                 }
               : {}
           }
         />
-        <div className="opacity-50 bg-black h-full w-full absolute z-0"/>
 
         <div className="container md:translate-x-[-70px] h-screen mx-auto px-4 md:px-14 flex flex-col md:flex-row text-center md:text-left items-center justify-center z-10 gap-2">
           <div className="flex justify-center items-end w-auto md:w-[600px] flex-1 relative">
             <img
               src={
                 movie.poster_path
-                  ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                  ? `https://image.tmdb.org/t/p/original${movie?.poster_path}`
                   : {}
               }
               alt={`Poster ${movie.name}`}
