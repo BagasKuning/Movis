@@ -76,7 +76,7 @@ const Navbar = () => {
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyPress}
             placeholder="Search"
-            className=" rounded-2xl sm:text-base text-xs px-3 py-[3px] mr-7 sm:mr-0 text-black relative z-10 h-5 sm:h-7 w-28 sm:w-36"
+            className=" rounded-2xl sm:text-base text-xs pl-3 pr-7 sm:pr-9 py-[6px] mr-7 sm:mr-0 text-black relative z-10 h-6 sm:h-7 w-32 sm:w-36"
           />
           <img
             src={search}

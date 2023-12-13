@@ -13,7 +13,6 @@ export default function Movies({ title, url, id }) {
     getData(url).then(res => setMovieTop(res.results.splice(0, 10)))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(movieTop)
 
   return (
     <div className="container mx-auto my-20" id={id}>

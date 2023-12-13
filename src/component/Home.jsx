@@ -18,12 +18,11 @@ export default function Home() {
 
     getData(url).then((res) => setMovieData(res.results.splice(0, 10)));
   }, []);
-  // console.log(movieData)
 
   return (
     <Swiper
       id="home"
-      className="mySwiper flex relative rounded-xl h-[280px] xl:rounded-3xl md:h-[500px] xl:h-[525px] 2xl:h-[680px] min-[2000px]:h-[780px]"
+      className="mySwiper flex relative rounded-xl rounded-tl-none rounded-tr-none h-[280px] xl:rounded-3xl xl:rounded-tl-none xl:rounded-tr-none md:h-[500px] xl:h-[525px] 2xl:h-[680px] min-[2000px]:h-[780px]"
       rewind={true}
       autoplay={{
         delay: 2000,

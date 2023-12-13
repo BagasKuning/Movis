@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import getData from "../fn/getData.js";
 
@@ -10,37 +11,42 @@ function MovieDesc() {
   const adult = searchParams.get("adult");
   const language = searchParams.get("language");
 
-  const [url, setUrl] = useState(
-    `https://api.themoviedb.org/3/search/movie?query=${query}&primary_release_year=${date}&page=1&year=${year}&include_adult=${adult}&region=${language}`
-  );
   const [movie, setMovie] = useState();
   const [render, setRender] = useState(false);
   const [genre, setGenre] = useState([]);
 
-  useEffect(() => {
-    if (type === "tv") {
-      setUrl(
-        `https://api.themoviedb.org/3/search/tv?query=${query}&first_air_date_year=${date}&page=1&year=${year}&include_adult=${adult}`
-      );
+  const fetchData = async () => {
+    try {
+      let url = `https://api.themoviedb.org/3/search/movie?query=${query}&primary_release_year=${date}&page=1&year=${year}&include_adult=${adult}&region=${language}`
+      if (type === "tv") {
+        url = `https://api.themoviedb.org/3/search/tv?query=${query}&first_air_date_year=${date}&page=1&year=${year}&include_adult=${adult}`;
+      }
+      const response = await getData(url);
+      setMovie(response.results[0]);
+    } catch (error) {
+      // Handle error
+      console.error("Error:", error);
     }
-    getData(url).then((res) => setMovie(res.results[0]));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+  
+
+  useEffect(() => {
+    fetchData(); // Panggil fungsi fetchData di dalam useEffect
   }, [render]);
 
   useEffect(() => {
-    const url =
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=cf1ac44e572326948fd75eef18f2e59e&language=en-US";
-    getData(url).then((res) => setGenre(res.genres));
+    getData("https://api.themoviedb.org/3/genre/movie/list?api_key=cf1ac44e572326948fd75eef18f2e59e&language=en-US")
+    .then((res) => setGenre(res.genres));
   }, []);
 
   if (!movie) {
-    setMovie({});
+    setMovie({})
     setRender((a) => !a);
   } else {
     return (
       <div className="flex w-screen h-screen">
         <div
-          className="w-screen h-screen absolute bg-cover bg-center blur-sm brightness-50"
+          className="w-screen h-screen fixed bg-cover bg-center blur-sm brightness-50"
           style={
             movie.backdrop_path
               ? {
@@ -58,8 +64,8 @@ function MovieDesc() {
                   ? `https://image.tmdb.org/t/p/original${movie?.poster_path}`
                   : {}
               }
-              alt={`Poster ${movie.name}`}
-              className="md:translate-x-[70px] md:w-6/12 h-60 md:h-auto sm:h-60 rounded-md relative"
+              alt={`Poster ${movie?.name}`}
+              className="md:translate-x-[30px] xl:translate-x-[80px] md:w-6/12 h-60 md:h-auto sm:h-60 rounded-md relative"
             />
           </div>
           <div className="flex-1">
@@ -67,7 +73,7 @@ function MovieDesc() {
               <h1 className="text-3xl lg:text-4xl xl:text-5xl mb-1 font-bold">
                 {movie.name ? movie.name : movie.title}
               </h1>
-              <div>
+              <div className="flex items-center justify-center md:justify-start flex-wrap">
                 {movie.genre_ids &&
                   movie.genre_ids.map((items, index) => {
                     // eslint-disable-next-line array-callback-return
