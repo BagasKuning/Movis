@@ -15,6 +15,7 @@ function MovieDesc() {
     `https://api.themoviedb.org/3/search/movie?query=${query}&primary_release_year=${date}&page=1&year=${year}&include_adult=${adult}&region=${language}`
   );
   const [movie, setMovie] = useState();
+  const [render, setRender] = useState(false);
   const [genre, setGenre] = useState([]);
   const options = {
     method: "GET",
@@ -38,7 +39,7 @@ function MovieDesc() {
       .catch((error) => {
         // console.error("Error:", error);
       });
-  }, [movie]);
+  }, [render]);
 
   useEffect(() => {
     axios(
@@ -55,11 +56,11 @@ function MovieDesc() {
   // console.clear()
 
   if (!movie) {
-    // console.log(movie)
-    setMovie({});
+    setMovie({})
+    setRender((a) => !a);
   } else {
     return (
-      <div className="flex w-full h-full">
+      <div className="flex w-screen h-screen">
         <div
           className="w-screen h-screen absolute bg-cover bg-center blur-sm"
           style={
