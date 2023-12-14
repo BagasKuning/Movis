@@ -15,9 +15,9 @@ export default function Movies({ title, url, id }) {
   }, []);
 
   return (
-    <div className="container mx-auto my-20" id={id}>
-      <div className="mx-8">
-        <div className="text-base sm:text-2xl relative mb-6">
+    <div className="container mx-auto my-14 sm:my-20" id={id}>
+      <div className="mx-4 sm:mx-8">
+        <div className="max-[340px]:text-base text-lg sm:text-2xl relative mb-6">
           <h1 className="relative z-10">{title}</h1>
           <div
             className="h-3 translate-x-[-6px] w-16 absolute bottom-0 z-0"
@@ -25,7 +25,7 @@ export default function Movies({ title, url, id }) {
               backgroundImage:
                 "linear-gradient(to right, rgb(148 163 184), rgba(0, 0, 0, 0) 100%)",
             }}
-          ></div>
+          />
         </div>
         <div
           className="px-1 sm:px-3 border-y-[3px] sm:border-y-[5px]"

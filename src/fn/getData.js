@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getMovie = async (url) => {
+const getData = async (url) => {
     const options = {
         method: "GET",
         headers: {
@@ -19,4 +19,4 @@ const getMovie = async (url) => {
     }
 };
 
-export default getMovie
+export default getData
