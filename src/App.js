@@ -3,6 +3,7 @@ import Navbar from "./component/Navbar.jsx";
 import Main from "./component/Main";
 import MovieDesc from "./component/MovieDesc.jsx";
 import Search from "./component/Search.jsx";
+import SideBar from "./component/SideBar.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/search/:query" element={<Search/>}></Route>
           <Route path="/search" element={<Search/>}></Route>
         </Routes>    
+        <SideBar/>
       </BrowserRouter>
     </div>
   );
