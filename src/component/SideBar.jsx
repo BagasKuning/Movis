@@ -9,23 +9,26 @@ export default function SideBar() {
         <a
           href="https://www.instagram.com/d.bagask_/?hl=id"
           alt=""
+          target="blank"
           className="w-5 h-5 sm:w-8 sm:h-8 rounded-md"
         >
-          <img src={instagram} alt="" />
+          <img src={instagram} alt="IG" />
         </a>
         <a
           href="https://www.facebook.com/dwi.bagaskara.9847/"
           alt=""
+          target="blank"
           className="w-5 h-5 sm:w-8 sm:h-8 rounded-md"
         >
-          <img src={facebook} alt="" />
+          <img src={facebook} alt="FB" className="rounded-md"/>
         </a>
         <a
           href="https://github.com/BagasKuning"
           alt=""
+          target="blank"
           className="w-5 h-5 sm:w-8 sm:h-8 bg-[#ffffff] rounded-md"
         >
-          <img src={github} alt="" />
+          <img src={github} alt="GITHUB" />
         </a>
       </div>
     </div>
