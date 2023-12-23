@@ -28,7 +28,6 @@ export default function NewFilm({ title, url }) {
     getData(url).then((res) => setData(res.results.splice(0, 10)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(data);
 
   return (
     <div className="container mx-auto">

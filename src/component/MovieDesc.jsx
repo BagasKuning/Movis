@@ -35,7 +35,7 @@ function MovieDesc() {
   }, [render]);
 
   useEffect(() => {
-    getData("https://api.themoviedb.org/3/genre/movie/list?api_key=cf1ac44e572326948fd75eef18f2e59e&language=en-US")
+    getData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     .then((res) => setGenre(res.genres));
   }, []);
 

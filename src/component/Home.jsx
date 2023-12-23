@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     const url =
-      "https://api.themoviedb.org/3/trending/movie/day?api_key=cf1ac44e572326948fd75eef18f2e59e";
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}`;
 
     getData(url).then((res) => setMovieData(res.results.splice(0, 10)));
   }, []);
