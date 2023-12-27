@@ -7,7 +7,7 @@ const getData = async (url) => {
             accept: "application/json",
             Authorization:
                 // still have problem env !!!
-                `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjFhYzQ0ZTU3MjMyNjk0OGZkNzVlZWYxOGYyZTU5ZSIsInN1YiI6IjY1NWVlZDRmMmIxMTNkMDE0ZWFkMzJiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3t11kV5FJeA8AkviCTAb9XfT_GijZq_RlJQYtixAUa0`,
+                `Bearer ${process.env.REACT_APP_AUTH}`
         },
     };
 
