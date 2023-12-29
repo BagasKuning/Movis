@@ -62,7 +62,7 @@ export default function NewFilm({ title, url }) {
                 <img
                   src={
                     items.poster_path
-                      ? `https://image.tmdb.org/t/p/original${items?.backdrop_path}`
+                      ? `https://image.tmdb.org/t/p/w500${items?.backdrop_path}`
                       : {}
                   }
                   alt={`Poster ${items?.name}`}

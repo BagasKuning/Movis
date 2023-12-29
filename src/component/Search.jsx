@@ -85,7 +85,7 @@ export default function Search() {
                   }&adult=${items.adult}&language=${items.original_language}`}
                 >
                   <img
-                    src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${items.poster_path}`}
                     alt="Image not available"
                     width={"auto"}
                     className="rounded"

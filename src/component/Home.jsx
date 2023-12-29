@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <Swiper
       id="home"
-      className="mySwiper flex relative rounded-xl rounded-tl-none rounded-tr-none h-[280px] xl:rounded-3xl xl:rounded-tl-none xl:rounded-tr-none md:h-[500px] xl:h-[525px] 2xl:h-[680px] min-[2000px]:h-[780px]"
+      className="mySwiper max-w-[1700px] flex relative rounded-xl rounded-tl-none rounded-tr-none h-[280px] xl:rounded-3xl xl:rounded-tl-none xl:rounded-tr-none md:h-[500px] xl:h-[525px] 2xl:h-[680px]"
       rewind={true}
       autoplay={{
         delay: 2000,

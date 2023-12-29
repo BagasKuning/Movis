@@ -60,7 +60,7 @@ export default function Movies({ title, url, id }) {
                   key={index}
                   className="flex items-end bg-cover bg-center z-0 group relative"
                   style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original${items.poster_path})`,
+                    backgroundImage: `url(https://image.tmdb.org/t/p/w500${items.poster_path})`,
                   }}
                 >
                   <Link
