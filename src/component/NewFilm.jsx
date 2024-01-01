@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import getData from "../fn/getData";
+import placeHolderImage from "./../images/placeholder-image.png";
 import { Link } from "react-router-dom";
 
 export default function NewFilm({ title, url }) {
@@ -28,6 +29,40 @@ export default function NewFilm({ title, url }) {
     getData(url).then((res) => setData(res.results.splice(0, 10)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    const lazyImages = document.querySelectorAll("img.lazy");
+
+    if ("IntersectionObserver" in window) {
+      const lazyImageObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const lazyImage = entry.target;
+              lazyImage.src = lazyImage.dataset.src;
+              lazyImage.srcset = lazyImage.dataset.srcset;
+              lazyImage.classList.remove("lazy");
+              observer.unobserve(lazyImage);
+            }
+          });
+        },
+        {
+          rootMargin: "0px 0px 100px 0px", // Sesuaikan dengan kebutuhan margin
+          threshold: 0.5, // Sesuaikan threshold sesuai kebutuhan
+        }
+      );
+
+      lazyImages.forEach((lazyImage) => {
+        lazyImageObserver.observe(lazyImage);
+      });
+    } else {
+      // Fallback for browsers that don't support IntersectionObserver
+      lazyImages.forEach((lazyImage) => {
+        lazyImage.src = lazyImage.dataset.src;
+        lazyImage.srcset = lazyImage.dataset.srcset;
+        lazyImage.classList.remove("lazy");
+      });
+    }
+  }, [data]); // useEffect dependencies
 
   return (
     <div className="container mx-auto">
@@ -62,12 +97,16 @@ export default function NewFilm({ title, url }) {
                 <img
                   src={
                     items.poster_path
-                      ? `https://image.tmdb.org/t/p/w500${items?.backdrop_path}`
+                      ? placeHolderImage // Gambar placeholder atau loading spinner
                       : {}
                   }
+                  data-src={`https://image.tmdb.org/t/p/w500${items?.backdrop_path}`}
+                  data-srcset={`https://image.tmdb.org/t/p/w500${items?.backdrop_path} 1000w, https://image.tmdb.org/t/p/w500${items?.backdrop_path} 500w`}
                   alt={`Poster ${items?.name}`}
-                  className="rounded-md hover:brightness-50 transition border-[1px] border-transparent hover:border-slate-300"
+                  loading="lazy"
+                  className="lazy rounded-md hover:brightness-50 transition border-[1px] border-transparent hover:border-slate-300"
                 />
+
                 <h2>{items.name ? items.name : items.title}</h2>
               </Link>
             ))}

@@ -35,7 +35,7 @@ export default function Home() {
         movieData.map((items, index) => (
           <SwiperSlide
             key={index}
-            className="flex w-full h-full items-end bg-cover bg-center flex-shrink-0 z-0"
+            className="w-full h-full items-end bg-cover bg-center flex-shrink-0 z-0"
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/original${items.backdrop_path})`,
               display: "flex",
