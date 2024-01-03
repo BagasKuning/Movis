@@ -32,8 +32,8 @@ export default function Search() {
           <div>
             <p className="text-3xl font-semibold">
               From
-              <span className="italic underline px-2">
-                {query && query.replace(/%20/g, " ")}
+              <span className="italic px-2">
+                "{query && query.replace(/%20/g, " ")}", 
               </span>
               Data Not Found
             </p>

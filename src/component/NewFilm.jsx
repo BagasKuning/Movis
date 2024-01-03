@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import getData from "../fn/getData";
 import placeHolderImage from "./../images/placeholder-image.png";
@@ -12,37 +13,31 @@ export default function NewFilm({ title, url }) {
       // Update maxItemsToShow based on window width
       setMaxItemsToShow(window.innerWidth <= 640 ? 6 : 10);
     };
-
     // Initial setup
     handleResize();
-
     // Event listener for window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []); // Empty dependency array means this effect runs once on mount
-
-  useEffect(() => {
+    
+    // optimasi data menjadi sepuluh
     getData(url).then((res) => setData(res.results.splice(0, 10)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  useEffect(() => {
+    
+    
+    // lazy loading
     const lazyImages = document.querySelectorAll("img.lazy");
 
     if ("IntersectionObserver" in window) {
-      const lazyImageObserver = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const lazyImage = entry.target;
-              lazyImage.src = lazyImage.dataset.src;
-              lazyImage.srcset = lazyImage.dataset.srcset;
-              lazyImage.classList.remove("lazy");
-              observer.unobserve(lazyImage);
-            }
+        const lazyImageObserver = new IntersectionObserver(
+          (entries, observer) => {
+            console.log("masuk")
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const lazyImage = entry.target;
+                lazyImage.src = lazyImage.dataset.src;
+                lazyImage.srcset = lazyImage.dataset.srcset;
+                lazyImage.classList.remove("lazy");
+                observer.unobserve(lazyImage);
+              }
           });
         },
         {
@@ -62,7 +57,13 @@ export default function NewFilm({ title, url }) {
         lazyImage.classList.remove("lazy");
       });
     }
-  }, [data]); // useEffect dependencies
+
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="container mx-auto">
@@ -101,10 +102,10 @@ export default function NewFilm({ title, url }) {
                       : {}
                   }
                   data-src={`https://image.tmdb.org/t/p/w500${items?.backdrop_path}`}
-                  data-srcset={`https://image.tmdb.org/t/p/w500${items?.backdrop_path} 1000w, https://image.tmdb.org/t/p/w500${items?.backdrop_path} 500w`}
+                  data-srcset={`https://image.tmdb.org/t/p/w500${items?.backdrop_path}`}
                   alt={`Poster ${items?.name}`}
                   loading="lazy"
-                  className="lazy rounded-md hover:brightness-50 transition border-[1px] border-transparent hover:border-slate-300"
+                  className="lazy w-[500px] h-auto rounded-md hover:brightness-50 transition border-[1px] border-transparent hover:border-slate-300"
                 />
 
                 <h2>{items.name ? items.name : items.title}</h2>
