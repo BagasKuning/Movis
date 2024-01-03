@@ -25,7 +25,7 @@ export default function Home() {
       className="mySwiper max-w-[1700px] flex relative rounded-xl rounded-tl-none rounded-tr-none h-[280px] xl:rounded-3xl xl:rounded-tl-none xl:rounded-tr-none md:h-[500px] xl:h-[525px] 2xl:h-[680px]"
       rewind={true}
       autoplay={{
-        delay: 2000,
+        delay: 4500,
         disableOnInteraction: false,
       }}
       navigation={true}
@@ -35,7 +35,7 @@ export default function Home() {
         movieData.map((items, index) => (
           <SwiperSlide
             key={index}
-            className="w-full h-full items-end bg-cover bg-center flex-shrink-0 z-0"
+            className="items-end bg-cover bg-center"
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/original${items.backdrop_path})`,
               display: "flex",

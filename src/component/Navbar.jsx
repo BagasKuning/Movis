@@ -82,7 +82,9 @@ const Navbar = () => {
             src={search}
             alt="search"
             onClick={handleSearch}
-            className="w-3 h-3 sm:w-5 sm:h-5 z-10 mr-7 sm:mr-0 absolute right-3 top-50% transform cursor-pointer bg-white"
+            width={"12px"}
+            height={"12px"}
+            className="sm:w-5 sm:h-5 z-10 mr-7 sm:mr-0 absolute right-3 top-50% transform cursor-pointer bg-white"
           />
         </div>
       </div>

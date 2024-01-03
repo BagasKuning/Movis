@@ -3,6 +3,9 @@ import getData from "../fn/getData.js";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import loading from "./../images/loading.png";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 
 export default function Search() {
   const [data, setData] = useState([]);
@@ -84,11 +87,13 @@ export default function Search() {
                       : new Date(items.first_air_date).getUTCFullYear()
                   }&adult=${items.adult}&language=${items.original_language}`}
                 >
-                  <img
+                  <LazyLoadImage
                     src={`https://image.tmdb.org/t/p/w500${items.poster_path}`}
                     alt="Image not available"
                     width={"auto"}
+                    height={240}
                     className="rounded"
+                    effect="blur"
                   />
                   <h2>{items.name ? items.name : items.title}</h2>
                 </Link>
