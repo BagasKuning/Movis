@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import search from "./../images/search.png";
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
 const Navbar = () => {
   const [navbarHeight, setNavbarHeight] = useState("");
   const [scrollY, setScrollY] = useState(window.scrollY);

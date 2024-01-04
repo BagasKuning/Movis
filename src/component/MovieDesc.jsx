@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import getData from "../fn/getData.js";
 
 function MovieDesc() {
@@ -12,12 +11,12 @@ function MovieDesc() {
   const language = searchParams.get("language");
 
   const [movie, setMovie] = useState();
-  const [render, setRender] = useState(false);
   const [genre, setGenre] = useState([]);
+  const fetchData = useRef(() => {});
 
-  const fetchData = async () => {
+  fetchData.current = async () => {
     try {
-      let url = `https://api.themoviedb.org/3/search/movie?query=${query}&primary_release_year=${date}&page=1&year=${year}&include_adult=${adult}&region=${language}`
+      let url = `https://api.themoviedb.org/3/search/movie?query=${query}&primary_release_year=${date}&page=1&year=${year}&include_adult=${adult}&region=${language}`;
       if (type === "tv") {
         url = `https://api.themoviedb.org/3/search/tv?query=${query}&first_air_date_year=${date}&page=1&year=${year}&include_adult=${adult}`;
       }
@@ -28,20 +27,17 @@ function MovieDesc() {
       console.error("Error:", error);
     }
   };
-  
 
   useEffect(() => {
-    fetchData(); // Panggil fungsi fetchData di dalam useEffect
-  }, [render]);
-
-  useEffect(() => {
-    getData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-    .then((res) => setGenre(res.genres));
+    fetchData.current();
+    
+    getData(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+    ).then((res) => setGenre(res.genres));
   }, []);
 
   if (!movie) {
-    setMovie({})
-    setRender((a) => !a);
+    setMovie({});
   } else {
     return (
       <div className="flex w-screen h-screen">
@@ -75,20 +71,23 @@ function MovieDesc() {
               </h1>
               <div className="flex items-center justify-center md:justify-start flex-wrap">
                 {movie.genre_ids &&
-                  movie.genre_ids.map((items, index) => {
-                    // eslint-disable-next-line array-callback-return
-                    return genre.map((element, index) => {
-                      if (element.id === items) {
-                        return (
-                          <span
-                            key={index}
-                            className="font-sans font-medium py-1 px-2 mr-1 bg-gray-900 rounded text-sm xl:text-lg"
-                          >
-                            {element.name}
-                          </span>
-                        );
-                      }
-                    });
+                  movie.genre_ids.map((movieGenreId) => {
+                    const matchedGenre = genre.find(
+                      (element) => element.id === movieGenreId
+                    );
+
+                    if (matchedGenre) {
+                      return (
+                        <span
+                          key={matchedGenre.id}
+                          className="font-sans font-medium py-1 px-2 mr-1 bg-gray-900 rounded text-sm xl:text-lg"
+                        >
+                          {matchedGenre.name}
+                        </span>
+                      );
+                    }
+
+                    return null; // Jangan lupa tambahkan penanganan ketika genre tidak ditemukan
                   })}
               </div>
             </div>

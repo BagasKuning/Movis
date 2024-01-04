@@ -11,9 +11,8 @@ export default function Movies({ title, url, id }) {
 
   useEffect(() => {
     getData(url).then((res) => setMovieTop(res.results.splice(0, 10)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  }, [url]);
+  
   return (
     <div className="container mx-auto my-14 sm:my-20" id={id}>
       <div className="mx-4 sm:mx-8">

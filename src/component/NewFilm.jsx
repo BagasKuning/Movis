@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import getData from "../fn/getData";
 import placeHolderImage from "./../images/placeholder-image.png";
@@ -26,7 +25,7 @@ export default function NewFilm({ title, url }) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [url]);
 
   return (
     <div className="container mx-auto">
@@ -66,7 +65,7 @@ export default function NewFilm({ title, url }) {
                   }
                   alt={`Poster ${items?.name}`}
                   width={"auto"}
-                  height={"auto"}
+                  height={"125px"}
                   className="rounded-md hover:brightness-50 transition border-[1px] border-transparent hover:border-slate-300"
                 />
 

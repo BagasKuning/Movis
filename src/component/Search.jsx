@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import getData from "../fn/getData.js";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
