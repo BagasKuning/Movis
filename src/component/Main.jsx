@@ -1,6 +1,7 @@
 import Home from "./Home.jsx";
 import Movies from "./Movies.jsx";
 import NewFilm from "./NewFilm.jsx";
+import Footer from "./Footer.jsx";
 
 export default function Main() {
   return (
@@ -26,6 +27,7 @@ export default function Main() {
           `https://api.themoviedb.org/3/trending/tv/day?language=en-US&api_key=${process.env.REACT_APP_API_KEY}`
         }
       />
+      <Footer/>
     </div>
   );
 }

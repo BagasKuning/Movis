@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="flex justify-center w-screen fixed z-50 transition duration-500"
+      className="flex justify-center items-center w-screen fixed z-50 transition duration-500 h-26"
       style={{
         height: navbarHeight,
         background: `${

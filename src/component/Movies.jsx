@@ -31,7 +31,7 @@ export default function Movies({ title, url, id }) {
           style={{ borderColor: "#465d6eb0" }}
         >
           <Swiper
-            className="container justify-between max-[270px]:h-[70px] max-[425px]:h-[130px] h-[160px] sm:h-[210px] xl:h-[240px] 2xl:h-[290px]"
+            className="container justify-between max-[270px]:h-[70px] max-[425px]:h-[130px] h-[160px] sm:h-[210px] xl:h-[290px] 2xl:h-[320px]"
             // slidesPerView={1}
             spaceBetween={0}
             breakpoints={{
