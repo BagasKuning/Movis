@@ -15,7 +15,7 @@ const Navbar = () => {
     }
   };
 
-  const handleSearch = (searchQuery) => {
+  const handleSearch = () => {
     window.location.href = `/search/${query}`;
     setQuery("");
   };
@@ -43,14 +43,14 @@ const Navbar = () => {
 
   return (
     <div
-      className="flex justify-center items-center w-screen fixed z-50 transition duration-500 h-26"
+      className={`${bgNavbar ? "backdrop-blur-sm" : "backdrop-blur-none"} flex justify-center items-center w-screen fixed z-50 transition duration-500 h-26`}
       style={{
         height: navbarHeight,
-        background: `${
-          bgNavbar
-            ? "#061720"
-            : "linear-gradient(to bottom, rgb(9, 38, 53), rgba(0, 0, 0, 0) 100%)"
-        }`,
+        // background: `${
+        //   bgNavbar
+        //     ? "#061720"
+        //     : "linear-gradient(to bottom, rgb(9, 38, 53), rgba(0, 0, 0, 0) 100%)"
+        // }`,
       }}
     >
       <div
